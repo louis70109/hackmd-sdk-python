@@ -1,0 +1,4 @@
+requests>=2.0
+urllib3
+click>=7.1.2
+pydantic
