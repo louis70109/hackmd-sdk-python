@@ -2,11 +2,10 @@ import json
 import os
 from typing import List, Dict, Optional
 import humps
-
 import requests
 
-from models.notes import Note, Notes, NoteCreate, NoteUpdate
-from models.users import Me
+from hackmd.typing.notes import Note, Notes, NoteCreate, NoteUpdate
+from hackmd.typing.users import Me
 
 
 class Hackmd:
