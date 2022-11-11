@@ -4,7 +4,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/louis70109/line-notify#contributing)
 [![Python Version](https://img.shields.io/badge/Python-%3E%3D%203.5-blue.svg)](https://badge.fury.io/py/lotify)
 
-It is a Type-safe Python SDK that can let HackMD development fastly.
+It is a Type-safe Python SDK that can let your HackMD development fastly.
 
 # Usage
 
@@ -14,6 +14,16 @@ pip install hackmd
 # or
 
 python setup.py install
+```
+
+```python
+from hackmd.client import Hackmd
+
+hack = Hackmd(token="YOUR_TOKEN")
+me = hack.get_me()
+
+print(me.teams[0].name)  # Your team name
+print(me.name)           # Your HackMD name
 ```
 
 # Methods
