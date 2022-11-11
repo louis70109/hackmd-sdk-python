@@ -9,7 +9,7 @@ It is a Type-safe Python SDK that can let your HackMD development fastly.
 # Usage
 
 ```shell
-pip install hackmd
+pip install hackmd-sdk-python
 
 # or
 
