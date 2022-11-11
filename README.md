@@ -40,9 +40,9 @@ print(me.name)           # Your HackMD name
     - return: List[Notes]
 - get_note(note_id=note_id)
     - return: Note()
-- create_note(body=NoteCreate)
+- create_note(body=NoteCreate())
     - return: Note()
-- update_note(note_id=note_id, body=NoteUpdate)
+- update_note(note_id=note_id, body=NoteUpdate())
     - return: Note()
 - delete_note(note_id=note_id)
     - return: ''
