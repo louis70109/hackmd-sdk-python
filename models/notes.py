@@ -34,9 +34,10 @@ class Note(Notes):
 class NoteCreate(BaseModel):
     title: Optional[str] = None
     content: Optional[str] = None
-    read_permission: Optional[str] = None
-    write_permission: Optional[str] = None
-    comment_permission: Optional[str] = None
+    read_permission: str
+    write_permission: str
+    comment_permission: str
+    permalink: Optional[str] = None
 
     @validator('read_permission', 'write_permission')
     def permission_check(cls, v):
@@ -55,8 +56,8 @@ class NoteCreate(BaseModel):
 
 class NoteUpdate(BaseModel):
     content: Optional[str] = None
-    read_permission: Optional[str] = None
-    write_permission: Optional[str] = None
+    read_permission: str
+    write_permission: str
     permalink: Optional[str] = None
 
     @validator('read_permission', 'write_permission')
