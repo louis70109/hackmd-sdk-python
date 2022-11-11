@@ -16,6 +16,8 @@ pip install hackmd
 python setup.py install
 ```
 
+## Get Me example
+
 ```python
 from hackmd.client import Hackmd
 
@@ -24,6 +26,25 @@ me = hack.get_me()
 
 print(me.teams[0].name)  # Your team name
 print(me.name)           # Your HackMD name
+```
+
+## Create Note example
+
+```python
+from hackmd.client import Hackmd
+from hackmd.typing.notes import NoteCreate
+
+hack = Hackmd(token="YOUR_TOKEN")
+note = NoteCreate(**{
+    'title': 'New Post',
+    'content': 'I am Content',
+    'read_permission': 'owner',
+    'write_permission': 'owner',
+    'comment_permission': 'everyone',
+
+})
+result = hack.create_note(body=note)
+print(result)
 ```
 
 # Methods
