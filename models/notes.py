@@ -26,16 +26,17 @@ class Notes(BaseModel):
             raise ValueError("Permission must be ['owner', 'signed_in', 'guest']")
         return v
 
+
 class Note(Notes):
     content: str
 
 
 class NoteCreate(BaseModel):
-    title: str
-    content: str
-    read_permission: str
-    write_permission: str
-    comment_permission: str
+    title: Optional[str] = None
+    content: Optional[str] = None
+    read_permission: Optional[str] = None
+    write_permission: Optional[str] = None
+    comment_permission: Optional[str] = None
 
     @validator('read_permission', 'write_permission')
     def permission_check(cls, v):
@@ -47,15 +48,16 @@ class NoteCreate(BaseModel):
     def comment_permission_check(cls, v):
         if v not in ['disabled', 'forbidden', 'owners', 'signed_in_users', 'everyone']:
             raise ValueError(
-                "Comment permission must be ['disabled', 'forbidden', 'owners', 'signed_in_users', 'everyone']")
+                "Comment permission must be ['disabled', 'forbidden', "
+                "'owners', 'signed_in_users', 'everyone']")
         return v
 
 
 class NoteUpdate(BaseModel):
-    content: str
-    read_permission: str
-    write_permission: str
-    permalink: str
+    content: Optional[str] = None
+    read_permission: Optional[str] = None
+    write_permission: Optional[str] = None
+    permalink: Optional[str] = None
 
     @validator('read_permission', 'write_permission')
     def permission_check(cls, v):
