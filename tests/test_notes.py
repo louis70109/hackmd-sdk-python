@@ -177,6 +177,7 @@ class TestClient(unittest.TestCase):
         body = {
             "content": "# Updated personal note",
             "read_permission": "signed_in",
+            "write_permission": "owner",
             "permalink": "note-permalink"
         }
         expect_response = Note(**{
