@@ -37,7 +37,7 @@ setup(
     name='hackmd-sdk-python',
     version=__version__,
     description='Type-safe python SDK for HackMD developer',
-    url='https://github.com/louis70109/line-notify',
+    url='https://github.com/louis70109/hackmd-sdk-python',
     author='NiJia Lin',
     author_email='louis70109@gmail.com',
     maintainer="NiJia Lin",
