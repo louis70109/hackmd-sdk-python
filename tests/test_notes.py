@@ -1,7 +1,7 @@
 import unittest
 import responses
 from hackmd.client import Hackmd
-from models.notes import NoteCreate, Note, NoteUpdate
+from hackmd.typing.notes import NoteCreate, Note, NoteUpdate
 
 
 class TestClient(unittest.TestCase):

@@ -1,7 +1,7 @@
 from typing import List, Optional
 from pydantic import BaseModel
 
-from models.teams import Team
+from typing.teams import Team
 
 
 class UserBase(BaseModel):

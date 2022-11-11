@@ -1,6 +1,6 @@
 from typing import List, Optional
 from pydantic import BaseModel, validator
-from models.users import User
+from typing.users import User
 
 
 class Notes(BaseModel):
