@@ -66,8 +66,7 @@ class TestClient(unittest.TestCase):
             "read_permission": "guest",
             "write_permission": "signed_in",
             "publish_link": "https://hackmd.io/@username/permalink"
-        }
-        ]
+        }]
 
         responses.add(
             responses.GET,
@@ -76,6 +75,46 @@ class TestClient(unittest.TestCase):
             status=200
         )
         result = self.tested.get_notes()
+        request = responses.calls[0]
+        self.assertEqual('GET', request.request.method)
+        self.assertEqual(result, expect_response)
+
+    @responses.activate
+    def test_get_note(self):
+        expect_response = {
+            "id": "ehgwc6a8RXSmcSaRwIQ2jw",
+            "title": "Personal note title",
+            "tags": [
+                "Personal",
+                "test"
+            ],
+            "created_at": 1643270371245,
+            "publish_type": "view",
+            "published_at": None,
+            "permalink": None,
+            "short_id": "SysJb0yAY",
+            "content": "# Personal note title\n###### tags: `Personal` `test`",
+            "last_changed_at": 1644461594806,
+            "last_change_user": {
+                "name": "James",
+                "photo": "https://avatars.githubusercontent.com/u/26138990?s=96",
+                "biography": None,
+                "user_path": "AMQ36J15QgCZf46ThEFadg"
+            },
+            "user_path": "AMQ36J15QgCZf46ThEFadg",
+            "team_path": None,
+            "read_permission": "guest",
+            "write_permission": "signed_in",
+            "publish_link": "https://hackmd.io/@username/permalink"
+        }
+
+        responses.add(
+            responses.GET,
+            f'{self.uri}/note/ehgwc6a8RXSmcSaRwIQ2jw',
+            json=expect_response,
+            status=200
+        )
+        result = self.tested.get_note(note_id="ehgwc6a8RXSmcSaRwIQ2jw")
         request = responses.calls[0]
         self.assertEqual('GET', request.request.method)
         self.assertEqual(result, expect_response)
