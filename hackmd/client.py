@@ -42,13 +42,22 @@ class Hackmd:
 
     def create_note(self, body: Optional[NoteCreate] = None):
         # https://reurl.cc/eW3kaM
-        response = self._post(url=f"{self.uri}/notes", data=body.dict())
+
+        if body is not None:
+            response = self._post(url=f"{self.uri}/notes", body=body.dict())
+        else:
+            response = self._post(url=f"{self.uri}/notes")
+
         result: Dict[str, any] = humps.decamelize(response.json())
         return Note(**result)
 
     def update_note(self, note_id: str, body: Optional[NoteUpdate] = None):
         # https://reurl.cc/MX0zDW
-        response = self._patch(url=f"{self.uri}/notes/{note_id}", data=body.dict())
+        if body is not None:
+            response = self._patch(url=f"{self.uri}/notes/{note_id}", body=body.dict())
+        else:
+            response = self._patch(url=f"{self.uri}/notes/{note_id}")
+
         result: Dict[str, any] = humps.decamelize(response.json())
         return Note(**result)
 
@@ -77,11 +86,11 @@ class Hackmd:
         except requests.exceptions.TooManyRedirects:
             raise RuntimeError('URL {url} was bad, please try a different one.'.format(url=url))
 
-    def _post(self, url, data=None, headers=None, timeout=None):
+    def _post(self, url, body=None, headers=None, timeout=None):
         try:
             header = {'Authorization': f'Bearer {self.token}'}
             response = requests.post(
-                url, headers=header, data=data, timeout=timeout)
+                url, headers=header, json=body, timeout=timeout)
             self.__check_http_response_status(response)
             return response
         except requests.exceptions.Timeout:
@@ -91,11 +100,11 @@ class Hackmd:
         except requests.exceptions.TooManyRedirects:
             raise RuntimeError('URL {url} was bad, please try a different one.'.format(url=url))
 
-    def _patch(self, url, data=None, headers=None, timeout=None):
+    def _patch(self, url, body=None, headers=None, timeout=None):
         try:
             header = {'Authorization': f'Bearer {self.token}'}
             response = requests.patch(
-                url, headers=header, data=data, timeout=timeout)
+                url, headers=header, json=body, timeout=timeout)
             self.__check_http_response_status(response)
             return response
         except requests.exceptions.Timeout:
