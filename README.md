@@ -63,6 +63,10 @@ print(result)
     - return: Note()
 - create_note(body=NoteCreate())
     - return: Note()
+    - Note:
+      - If Title ✅ and Content ❌, Title ✅
+      - If Title ✅ and Content ✅, Title ❌
+      - If Title ❌ and Content ✅, Title ✅ (Parse by Content)
 - update_note(note_id=note_id, body=NoteUpdate())
     - return: Note()
 - delete_note(note_id=note_id)
